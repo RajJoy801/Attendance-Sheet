@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'http://localhost:5000/api', // Proxy base URL in development
+  baseURL: `${window.location.origin}/api`, // Proxy base URL in development
 });
 export const register = (userData) => API.post('/users/register', userData);
 export const login = (credentials) => API.post('/auth/login', credentials);
