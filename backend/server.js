@@ -3,7 +3,7 @@ const connectDB = require('./config/db');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-
+const path = require("path");
 
 
 dotenv.config();
@@ -21,6 +21,11 @@ app.use('/api/students', require('./routes/student'));
 app.use('/api/users', require('./routes/user'));
 app.use('/api/attendance', require('./routes/attendance'));
 
+app.use(express.static(path.resolve(__dirname, "../frontend/build")));
+
+app.get("/", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "../frontend/build", "index.html"));
+});
 
 // Start Server
 const PORT = process.env.PORT || 5000;
